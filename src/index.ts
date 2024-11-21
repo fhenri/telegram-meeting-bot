@@ -137,7 +137,8 @@ async function getMeetingDate(conversation: MyConversation, ctx: MyContext): Pro
 		}
 
 		// Check if the date is in the past
-		if (isAfter(new Date(), meetingDate)) {
+		const today = await conversation.now();
+		if (isAfter(today, meetingDate)) {
 			await ctx.reply('Error: Meeting date cannot be in the past.');
 			meetingDate = null;
 		}
